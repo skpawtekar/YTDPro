@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Confirmation</title>
+</head>
+<body>
+    <h1>Download Confirmation</h1>
+    <p>Video Title: {{ video_title }}</p>
+    <p>Selected Stream:</p>
+    <ul>
+        <li>Quality: {{ selected_stream.quality }}</li>
+        <li>Format: {{ selected_stream.file_format }}</li>
+    </ul>
+    <form method="POST" action="/download_video">
+        <input type="hidden" name="video_url" value="{{ video_url }}">
+        <input type="hidden" name="stream_index" value="{{ selected_index }}">
+        <button type="submit">Confirm Download</button>
+    </form>
+</body>
+</html>
