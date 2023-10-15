@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stream Selection</title>
+
+    <style>
+        /* Reset some default styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #42054d; /* Dark background color, similar to the previous page */
+            color: #fcf5fe; /* White text color, similar to the previous page */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #e7ff4c; /* White text color for headings, similar to the previous page */
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ef8d3c; /* Container background color, similar to the previous page */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        label {
+            font-size: 13px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        button {
+            background-color: #610881; /* Button background color, similar to the previous page */
+            color: #fff; /* Button text color, similar to the previous page */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #921cbd; /* Button background color on hover, similar to the previous page */
+            transform: scale(1.05);
+        }
+
+        div {
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        input[type="radio"]:checked {
+            box-shadow: 0 0 5px 3px #ffffff; /* Add a glow effect when the radio button is checked */
+            border-color: yellow;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+    <div>
+    <h1>Personalized Download</h1>
+    <form action="/process_and_download" method="post">
+        <h3>* Video Streams *</h3>
+        <ul>
+            {% for video_stream in video_streams %}
+                <li>
+                    <label>
+                        <input type="radio" name="selected_video_stream" value="{{ video_stream.itag }}">
+                        Resolution: {{ video_stream.resolution }}
+                        File Format: {{ video_stream.mime_type }}
+                        File Size: {{ video_stream.filesize / 1000000 }} MB
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h3>* Audio Streams *</h3>
+        <ul>
+            {% for audio_stream in audio_streams %}
+                <li>
+                    <label>
+                        <input type="radio" name="selected_audio_stream" value="{{ audio_stream.itag }}">
+                        Bitrate: {{ audio_stream.abr }} kbps
+                        File Format: {{ audio_stream.mime_type }}
+                        File Size: {{ audio_stream.filesize / 1000000 }} MB
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Combine and Download</button>
+    </form>
+    </div>
+
+    <div>
+    <h1>Default Download</h1>
+    <form action="/download_pre_combined" method="post">
+        <ul>
+            {% for combined_stream in combined_streams %}
+                <li>
+                    <label>
+                        <input type="radio" name="selected_pre_combined_stream" value="{{ combined_stream.itag }}">
+                        Resolution: {{ combined_stream.resolution }}
+                        File Format: {{ combined_stream.mime_type }}
+                        File Size: {{ combined_stream.filesize / 1000000 }} MB
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Download</button>
+    </form>
+    </div> 
+
+</body>
+</html>

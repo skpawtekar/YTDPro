@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Downloader PRO</title>
+
+    <style>
+        /* Reset some default styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #42054d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ef8d3c;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h1, label {
+            color: #fcf5fe;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%; /* Make it 100% of the container */
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            background-color: #f0f0f0;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        input[type="text"]:focus {
+            background-color: #fff;
+            transform: scale(1.05);
+        }
+
+        button {
+            background-color: #610881;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #921cbd;
+            transform: scale(1.05);
+        }
+
+    </style>
+
+
+
+</head>
+<body>
+    <h1>YouTube Downloader <span style="color:#fff202">Pro</span></h1>
+    <form action="/download" method="post">
+        <label for="video_url">Enter YouTube Video URL:</label>
+        <input type="text" name="video_url" id="video_url" required>
+        <br>
+        <button type="submit">Download</button>
+    </form>
+</body>
+</html>
